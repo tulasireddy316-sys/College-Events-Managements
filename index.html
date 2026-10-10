@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eventora | College Fest & Event Management</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <header class="navbar">
+    <a class="logo" href="#home">✦ Eventora</a>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#events">Fest Events</a>
+      <a href="#register">Register</a>
+      <a href="#admin">Dashboard</a>
+    </nav>
+    <button class="btn outline" id="loginBtn">Admin Login</button>
+  </header>
+
+  <section class="hero" id="home">
+    <div>
+      <span class="tag">✦ YOUR CAMPUS. YOUR STAGE.</span>
+      <h1>Feel the Beat.<br><span>Own the Spotlight!</span></h1>
+      <p>Dance, music, flash mobs, rampwalks and unforgettable campus celebrations — your college fest starts here.</p>
+      <a class="btn primary" href="#events">Explore Fest Events ↗</a>
+      <a class="btn light" href="#register">Join the Celebration</a>
+      <div class="hero-note">🎤 Live performances · 🏆 Exciting prizes · ✨ Big memories</div>
+    </div>
+    <div class="hero-art">
+      <div class="art-circle">🎉</div>
+      <div class="art-card">
+        <small>COLLEGE FEST 2026</small>
+        <h2>LIGHTS.<br>CAMERA.<br>FEST!</h2>
+        <div class="art-emojis">💃 🎸 🎶 🏆</div>
+      </div>
+      <span class="bubble">🎤 Show your talent</span>
+      <span class="bubble bubble2">🏆 Win prizes</span>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><span>🎪</span><div><strong id="totalEvents">0</strong><p>Fest Events</p></div></div>
+    <div class="stat"><span>🙋</span><div><strong id="totalRegs">0</strong><p>Registrations</p></div></div>
+    <div class="stat"><span>🏆</span><div><strong id="prizeEvents">0</strong><p>Prize Events</p></div></div>
+    <div class="stat"><span>🎉</span><div><strong id="upcoming">0</strong><p>Upcoming Events</p></div></div>
+  </section>
+
+  <section class="section" id="events">
+    <span class="tag">THE FEST LINE-UP</span>
+    <h2>Choose Your <span>Spotlight</span></h2>
+    <p class="muted">Find your event, register and get ready to shine!</p>
+
+    <div class="filters">
+      <input id="search" placeholder="🔍 Search event, venue or organiser...">
+      <select id="category">
+        <option value="All">All Categories</option>
+        <option>Dance</option>
+        <option>Music</option>
+        <option>Flashmob</option>
+        <option>Music Band</option>
+        <option>Rampwalk</option>
+        <option>Prize Ceremony</option>
+        <option>Technical</option>
+        <option>Cultural</option>
+        <option>Sports</option>
+        <option>Workshop</option>
+      </select>
+      <select id="sort">
+        <option value="date">Soonest First</option>
+        <option value="name">Name A–Z</option>
+      </select>
+    </div>
+
+    <div class="event-grid" id="eventList"></div>
+    <p id="noEvents" class="muted hidden">No events found. Try another search.</p>
+  </section>
+
+  <section class="prize-banner">
+    <div class="trophy">🏆</div>
+    <div>
+      <span class="tag">TALENT DESERVES TO BE CELEBRATED</span>
+      <h2>Perform. Compete. Win!</h2>
+      <p>Compete for winner and runner-up prizes, certificates and the cheers of your campus.</p>
+    </div>
+  </section>
+
+  <section class="section" id="register">
+    <span class="tag">SAVE YOUR SPOT</span>
+    <h2>Fest <span>Registration</span></h2>
+    <p class="muted">Fill in your details and choose the event you want to join.</p>
+
+    <form id="registrationForm" class="panel">
+      <div class="form-grid">
+        <label>Full Name
+          <input id="studentName" required placeholder="Your full name">
+        </label>
+        <label>College Email
+          <input id="studentEmail" type="email" required placeholder="you@college.edu">
+        </label>
+        <label>Student / Roll Number
+          <input id="rollNumber" required placeholder="Your roll number">
+        </label>
+        <label>Select Event
+          <select id="eventChoice" required>
+            <option value="">Choose an event</option>
+          </select>
+        </label>
+      </div>
+      <button class="btn primary" type="submit">Register for Event ↗</button>
+      <p id="regMessage" class="message"></p>
+    </form>
+  </section>
+
+  <section class="section" id="admin">
+    <span class="tag">ORGANISER SPACE</span>
+    <h2>Admin <span>Dashboard</span></h2>
+    <p class="muted">Add and update fest events, prizes and student registrations.</p>
+
+    <div id="locked" class="panel">🔐 Admin access required. Click Admin Login to continue.</div>
+
+    <div id="adminPanel" class="hidden">
+      <div class="admin-grid">
+        <form id="eventForm" class="panel">
+          <h3 id="formTitle">Add a New Event</h3>
+          <input type="hidden" id="editId">
+
+          <label>Event Name
+            <input id="eventName" required>
+          </label>
+
+          <div class="form-grid">
+            <label>Category
+              <select id="eventCategory">
+                <option>Dance</option>
+                <option>Music</option>
+                <option>Flashmob</option>
+                <option>Music Band</option>
+                <option>Rampwalk</option>
+                <option>Prize Ceremony</option>
+                <option>Technical</option>
+                <option>Cultural</option>
+                <option>Sports</option>
+                <option>Workshop</option>
+              </select>
+            </label>
+            <label>Date<input type="date" id="eventDate" required></label>
+            <label>Time<input type="time" id="eventTime" required></label>
+            <label>Venue<input id="eventVenue" required></label>
+          </div>
+
+          <label>Organiser<input id="eventOrganizer" required></label>
+          <label>Prize Details (optional)
+            <input id="eventPrize" placeholder="Winner ₹5,000; Runner-up ₹2,500">
+          </label>
+          <label>Description
+            <textarea id="eventDescription" rows="3" required></textarea>
+          </label>
+
+          <button class="btn primary" type="submit" id="saveEvent">Add Event</button>
+          <button class="btn light hidden" type="button" id="cancelEdit">Cancel</button>
+          <p id="adminMessage" class="message"></p>
+        </form>
+
+        <div class="panel">
+          <h3>Participant Registrations</h3>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Student</th><th>Roll No.</th><th>Event</th><th>Action</th></tr>
+              </thead>
+              <tbody id="participants"></tbody>
+            </table>
+          </div>
+          <p id="regCount" class="muted"></p>
+          <button class="btn outline" id="logoutBtn">Logout</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <a class="logo" href="#home">✦ Eventora</a>
+    <p>Bring your campus community together.</p>
+    <small>© 2026 Eventora · College Fest & Event Management System</small>
+  </footer>
+
+  <div class="modal hidden" id="loginModal">
+    <form class="modal-box" id="loginForm">
+      <button type="button" class="close" id="closeModal">×</button>
+      <span class="tag">WELCOME BACK</span>
+      <h2>Admin Login</h2>
+      <label>Username<input id="username" required placeholder="admin"></label>
+      <label>Password<input id="password" type="password" required placeholder="Password"></label>
+      <button class="btn primary full" type="submit">Login ↗</button>
+      <p id="loginMessage" class="message"></p>
+      <p class="demo">Demo login: <b>admin</b> / <b>admin123</b></p>
+    </form>
+  </div>
+</body>
+</html>
+</html>
